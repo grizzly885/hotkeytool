@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyTest", "HotkeyTest\HotkeyTest.csproj", "{8CBC3809-C96A-4925-8187-585845399450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotkeyManager", "HotkeyManager\hotkeyManager.csproj", "{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CBC3809-C96A-4925-8187-585845399450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CBC3809-C96A-4925-8187-585845399450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CBC3809-C96A-4925-8187-585845399450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CBC3809-C96A-4925-8187-585845399450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
