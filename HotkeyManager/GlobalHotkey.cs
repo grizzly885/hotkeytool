@@ -11,8 +11,7 @@ namespace hotkeyManager
         public int HotkeyId { get; private set; }
         public Action HotkeyAction { get; internal set; }
         public Keys HotkeKeys { get; private set; }
-        public KeyModifiers HotkeyModifiers { get; private set; }
-        private readonly IntPtr _handle;
+        public KeyModifiers HotkeyModifiers { get; private set; }        
         public event EventHandler<HotKeyEventArgs> OnBeforeHotkeyExecute;
         public event EventHandler<HotKeyEventArgs> OnAfterHotKeyExecute;
 
@@ -23,6 +22,9 @@ namespace hotkeyManager
 
         [DllImport("user32", SetLastError = true)]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        private readonly IntPtr _handle;
+        private bool _isRegistered;
 
 
         public GlobalHotkey(Keys hotkeKeys, KeyModifiers hotkeyModifiers, int id, IntPtr handle, Action action)
@@ -40,8 +42,12 @@ namespace hotkeyManager
             UnregisterGlobalHotKey();
 
             // register the hotkey, throw if any error
-            if (RegisterHotKey(_handle, HotkeyId, (uint) HotkeyModifiers, (uint) HotkeKeys)) 
+            if (RegisterHotKey(_handle, HotkeyId, (uint)HotkeyModifiers, (uint)HotkeKeys))
+            {
+                _isRegistered = true;
                 return;
+            }
+               
 
             int error = Marshal.GetLastWin32Error();
             throw new HotkeyException("Unable to register hotkey", error);
@@ -50,8 +56,13 @@ namespace hotkeyManager
         /// <summary>Unregister the hotkey</summary>
         public void UnregisterGlobalHotKey()
         {
-            if (UnregisterHotKey(_handle, HotkeyId)) 
+            if (!_isRegistered)
                 return;
+            if (UnregisterHotKey(_handle, HotkeyId))
+            {
+                _isRegistered = false;
+                return;
+            }
 
             int error = Marshal.GetLastWin32Error();
             throw new HotkeyException("Unable to register hotkey", error);
