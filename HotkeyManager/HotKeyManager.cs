@@ -9,11 +9,10 @@ namespace hotkeyManager
     public class HotKeyManager : IHotkeyManager, IDisposable
     {
         private static readonly ManualResetEvent WindowReadyEvent = new ManualResetEvent(false);
+        private static readonly Lazy<HotKeyManager> _instance = new Lazy<HotKeyManager>(() => new HotKeyManager());
 
         private delegate void RegisterHotKeyDelegate();
-
         private delegate void UnRegisterHotKeyDelegate();
-
         private static IntPtr _windowHandle;
         private static MessageWindow _messageWindow;
         private readonly string _hotkeyPrefix;
@@ -21,11 +20,17 @@ namespace hotkeyManager
 
         internal event EventHandler<HotKeyEventArgs> OnHotKeyPressed;
 
-        public HotKeyManager()
+        public static HotKeyManager Instance
+        {
+            get
+            {
+                return _instance.Value;
+            }
+        }
+
+        private HotKeyManager()
         {
             _hotkeys = new Dictionary<int, GlobalHotkey>();
-
-
             var messageLoop = new Thread(delegate()
             {
                 _messageWindow = new MessageWindow(WindowReadyEvent);
@@ -44,25 +49,30 @@ namespace hotkeyManager
 
         public void RegisterHotKey(Keys key, KeyModifiers modifiers, Action hotKeyAction)
         {
-            if (_windowHandle == IntPtr.Zero)
-            {
-                throw new Exception("Handle is null. Could not register Key");
-            }
             var id = GetHotKeyId(key, modifiers);
             if (!_hotkeys.ContainsKey(id))
             {
-                WindowReadyEvent.WaitOne();
-
                 var hotkey = new GlobalHotkey(key, modifiers, id, _windowHandle, hotKeyAction);
-                OnHotKeyPressed += hotkey.ExecuteHotkey;
-                _messageWindow.Invoke(new RegisterHotKeyDelegate(hotkey.RegisterGlobalHotKey));
-                _hotkeys.Add(hotkey.HotkeyId, hotkey);
+                RegisterHotkey(hotkey);
             }
             else
             {
                 var hotKey = _hotkeys[id];
                 hotKey.HotkeyAction = hotKeyAction;
             }
+        }
+
+        private void RegisterHotkey(GlobalHotkey hotkey)
+        {
+            if (_windowHandle == IntPtr.Zero)
+            {
+                throw new Exception("Handle is null. Could not register Key");
+            }           
+                WindowReadyEvent.WaitOne();               
+                OnHotKeyPressed += hotkey.ExecuteHotkey;
+                _messageWindow.Invoke(new RegisterHotKeyDelegate(hotkey.RegisterGlobalHotKey));
+                _hotkeys.Add(hotkey.HotkeyId, hotkey);
+           
         }
 
         public void UnregisterHotKey(Keys key, KeyModifiers modifiers)

@@ -22,9 +22,9 @@ namespace HotkeyTest
             {
                 p.StartInfo.Verb = "runas";
             }
-            
 
-           HotKeyManager manager = new HotKeyManager();
+
+            HotKeyManager manager = HotKeyManager.Instance;
            manager.RegisterHotKey(Keys.N, hotkeyManager.KeyModifiers.Alt | hotkeyManager.KeyModifiers.Control,
                () => { 
                          p.Start();
