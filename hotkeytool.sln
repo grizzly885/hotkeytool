@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyTest", "HotkeyTest\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hotkeyManager", "HotkeyManager\hotkeyManager.csproj", "{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeySystemTray", "HotkeySystemTray\HotkeySystemTray.csproj", "{854EDB61-DC38-45C5-B7F2-6472DC20C542}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFA0A4D4-DB0F-48C8-974E-03B111BC1C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{854EDB61-DC38-45C5-B7F2-6472DC20C542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{854EDB61-DC38-45C5-B7F2-6472DC20C542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{854EDB61-DC38-45C5-B7F2-6472DC20C542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{854EDB61-DC38-45C5-B7F2-6472DC20C542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
