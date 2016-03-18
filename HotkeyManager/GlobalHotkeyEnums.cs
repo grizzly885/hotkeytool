@@ -11,8 +11,4 @@ namespace hotkeyManager
         Windows = 8,
         NoRepeat = 0x4000
     }
-   public class GlobalHotkeyEnums
-    {
-       
-    }
 }
