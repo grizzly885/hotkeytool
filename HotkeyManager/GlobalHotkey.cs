@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Common.Logging;
+using log4net;
 
 namespace hotkeyManager
 {
